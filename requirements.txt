@@ -1,2 +1,9 @@
 pymupdf
+python-docx
+opencv-python
 pytesseract
+flask
+langchain_text_splitters
+sentence-transformers 
+faiss-cpu 
+numpy
