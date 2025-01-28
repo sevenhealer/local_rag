@@ -5,8 +5,8 @@ def create_chunks(text: str) -> list[str]:
         if not text:
             raise ValueError("Text cannot be empty")
         splitter = RecursiveCharacterTextSplitter(
-            chunk_size=512,
-            chunk_overlap=50,
+            chunk_size=500,
+            chunk_overlap=100,
             separators=["\n\n", "\n", " ", ""]
         )
         chunks = splitter.split_text(text)

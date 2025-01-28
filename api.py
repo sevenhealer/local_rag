@@ -5,6 +5,12 @@ from create_chunks import create_chunks
 from create_embeddings import create_embeddings
 from create_faissIndex import create_faiss_index
 import json
+from test_retreval import retrieve_chunks
+from generate_answer import generate_answer
+import logging
+
+logging.basicConfig(level=logging.INFO, filename="rag_pipeline")
+
 
 app = Flask(__name__)
 
@@ -36,6 +42,18 @@ def upload():
 
     except Exception as e:
         return jsonify({"error": f"Internal Server Error: {str(e)}"}), 500
+
+@app.route('/query', methods=['POST'])
+def query():
+    body = request.get_json()
+    query = body['query']
+    response_chunks = retrieve_chunks(query)
+    if not response_chunks:
+        return jsonify({"error": "No relevant chunks found for the query"}), 404
+
+    answer = generate_answer(query, response_chunks)
+    return jsonify({"query": query, "chunks": response_chunks, "answer": answer}), 200
+
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)

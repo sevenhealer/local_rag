@@ -3,7 +3,7 @@ import json
 import numpy as np
 from create_embeddings import create_embeddings
 
-def retrieve_chunks(query: str, top_k: int = 3) -> list[str]:
+def retrieve_chunks(query: str, top_k: int = 5) -> list[str]:
     try:
         with open("saved_chunks.json", "r") as f:
             chunks = json.load(f)
@@ -28,4 +28,4 @@ def retrieve_chunks(query: str, top_k: int = 3) -> list[str]:
         print(f"Error in retrieve_chunks: {e}")
         return []
 
-print(retrieve_chunks("AWS"))
+# print(retrieve_chunks("AWS"))
