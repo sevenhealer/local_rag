@@ -23,7 +23,7 @@ def upload():
         if not filename:
             return jsonify({"error": "No file provided"}), 400
 
-        temp_path = os.path.join('/tmp', filename)
+        temp_path = os.path.join(os.getcwd(), filename)
         file.save(temp_path)
 
         data = text_extractor(temp_path)
@@ -42,6 +42,10 @@ def upload():
 
     except Exception as e:
         return jsonify({"error": f"Internal Server Error: {str(e)}"}), 500
+    
+    finally:
+        if temp_path and os.path.exists(temp_path):
+            os.remove(temp_path)
 
 @app.route('/query', methods=['POST'])
 def query():

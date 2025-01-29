@@ -5,5 +5,3 @@ def txt_extractor(file_path: str) -> str:
     except UnicodeDecodeError:
         with open(file_path, 'r', encoding='latin-1') as file:
             return file.read()
-        
-txt_extractor('test/demo.txt')

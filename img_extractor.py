@@ -1,6 +1,8 @@
 # from ocr_preprocess import preprocess_image
 import pytesseract
-pytesseract.pytesseract.tesseract_cmd = '/usr/bin/tesseract'
+# pytesseract.pytesseract.tesseract_cmd = '/usr/bin/tesseract'
+pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe' #win
+
 
 def img_extractor(file_path: str) -> str:
     try:

@@ -9,4 +9,4 @@ def docx_extractor(file_path: str) -> str:
     except Exception as e:
         raise ValueError(f"Error Parsing DOCX: {str(e)}")
 
-docx_extractor('test/demo.docx')
+# docx_extractor('test/demo.docx')
