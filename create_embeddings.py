@@ -1,11 +1,13 @@
 from sentence_transformers import SentenceTransformer
 import numpy as np
 
+model = SentenceTransformer("all-MiniLM-L6-v2")
+
 def create_embeddings(texts: list[str]) -> np.ndarray:
     try:
         if not texts:
             raise ValueError("Input list cannot be empty")
-        model = SentenceTransformer("paraphrase-MiniLM-L6-v2")
+        
         embeddings = model.encode(texts, show_progress_bar=False)
         return embeddings
     except Exception as e:

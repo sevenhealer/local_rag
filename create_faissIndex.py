@@ -1,13 +1,13 @@
 import faiss
 import numpy as np
 
-def create_faiss_index(embeddings: list[float]):
+def create_faiss_index(embeddings: np.ndarray):
     try:
-        if not embeddings.any():
+        if embeddings.size == 0:
             raise ValueError("Embeddings array is empty")
-        embeddings = np.array(embeddings).astype('float32')
+        
+        embeddings = embeddings.astype('float32')
         dimension = embeddings.shape[1]
-        print(dimension)
         index = faiss.IndexFlatL2(dimension)
         index.add(embeddings)
         faiss.write_index(index, "faiss_index.index")
