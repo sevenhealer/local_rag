@@ -7,3 +7,4 @@ faiss_index.index
 rag_pipeline
 Rag.spec
 .gradio/
+rag_pipeline.log
